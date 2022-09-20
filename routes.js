@@ -10,6 +10,6 @@ mongoose
   .catch((err) => console.log(err));
 
 const registerRoute = require("./routes/Register");
-
-route.use("/", registerRoute);
+const posts = require("./routes/Posts")
+route.use("/", posts);
 module.exports = route;
