@@ -1,5 +1,4 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const app = express();
 const PORT = process.env.PORT || 6969;
 require("dotenv").config();
@@ -10,7 +9,7 @@ app.get("/", (req, res) => {
   res.status(200).json("API working fine");
 });
 
-app.use(bodyParser.json());
+app.use(express.json());
 app.use("/api", routes);
 
 app.listen(PORT, () => {
