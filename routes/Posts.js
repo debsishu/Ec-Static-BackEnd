@@ -9,9 +9,9 @@ route.post("/", async (req, res) => {
     const response = await Posts.create({
       username,
       postContent,
-      date: "Hello",
+      date: new Date().toLocaleDateString("en-GB"),
     });
-    console.log("Post created successfully : " + response);
+    console.log("Post created successfully : ", response);
   } catch (error) {
     res.json(error);
   }
