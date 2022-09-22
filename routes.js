@@ -10,6 +10,11 @@ mongoose
   .catch((err) => console.log(err));
 
 const registerRoute = require("./routes/Register");
-const posts = require("./routes/Posts")
-route.use("/", posts);
+const postsRoute = require("./routes/Posts");
+const loginRoute = require("./routes/Login");
+
+route.use("/register", registerRoute);
+route.use("/createpost", postsRoute);
+route.use("/login", loginRoute);
+
 module.exports = route;

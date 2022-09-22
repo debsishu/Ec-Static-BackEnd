@@ -1,24 +1,21 @@
-const express = require('express');
+const express = require("express");
 const route = express.Router();
-const Posts = require('../models/PostsStructure')
+const Posts = require("../models/Posts");
 
-route.post("/posts", async (req, res) => {
-    const {username, postID, postContent} = req.body
+route.post("/", async (req, res) => {
+  const { username, postContent } = req.body;
 
-    try{
-        const response = await Posts.create({
-            username,
-            postID,
-            postContent,
-        });
-    }catch(error){
-        res.json(error);
-    }
-    res.json({status : 'ok'});
+  try {
+    const response = await Posts.create({
+      username,
+      postContent,
+      date: "Hello",
+    });
+    console.log("Post created successfully : " + response);
+  } catch (error) {
+    res.json(error);
+  }
+  res.json({ status: "ok" });
 });
 
 module.exports = route;
-
-
-
-

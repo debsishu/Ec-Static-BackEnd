@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 const route = express.Router();
 const User = require("../models/User");
 
-route.post("/register", async (req, res) => {
+route.post("/", async (req, res) => {
   const { name, email, username, password: plainTextPassword } = req.body;
   const password = await bcrypt.hash(plainTextPassword, 10);
 
@@ -21,4 +21,3 @@ route.post("/register", async (req, res) => {
   res.json({ status: "ok" });
 });
 module.exports = route;
-
