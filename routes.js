@@ -12,9 +12,11 @@ mongoose
 const registerRoute = require("./routes/Register");
 const postsRoute = require("./routes/Posts");
 const loginRoute = require("./routes/Login");
+const checkToken = require("./routes/CheckToken");
 
 route.use("/register", registerRoute);
 route.use("/createpost", postsRoute);
 route.use("/login", loginRoute);
+route.use("/checktoken", checkToken);
 
 module.exports = route;
