@@ -20,7 +20,13 @@ route.post("/", async (req, res) => {
       { username: user.username, id: user._id },
       JWTSECRET
     );
-    return res.json({ status: "ok", data: token });
+    return res
+      .cookie("token", token)
+      .json({ id: user._id, username: user.username });
+  } else {
+    res
+      .sendStatus(401)
+      .json({ status: "error", message: "username or password is invalid" });
   }
 });
 

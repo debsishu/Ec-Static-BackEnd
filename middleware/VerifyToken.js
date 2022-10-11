@@ -1,19 +1,16 @@
 const jwt = require("jsonwebtoken");
 const JWTSECRET = process.env.JWTSECRET;
+const User = require("../models/User");
 
-const verifyToken = (req, res, next) => {
-  const token = req.body.token;
+const verifyToken = async (req, res, next) => {
+  const token = req.cookies.token;
+  if (!token) return res.status(400).json({ error: "No token found" });
 
-  if (!token) return res.status(400).json({ error: "User not authenticated" });
-
-  try {
-    const validateToken = jwt.verify(token, JWTSECRET);
-    if (!validateToken) res.status(400).json({ error: "Token Not Verified" });
-    req.isAuthenticated = true;
-    return next();
-  } catch (err) {
-    return res.status(400).json({ error: err });
-  }
+  const payload = jwt.verify(token, JWTSECRET);
+  const user = await User.findById(payload.id);
+  if (!user) res.status(400).json({ error: "User not verified" });
+  // res.json({ id: user._id, username: user.username, isAuthenticated: true });
+  return next();
 };
 
 module.exports = verifyToken;

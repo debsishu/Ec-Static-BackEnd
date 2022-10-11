@@ -1,12 +1,18 @@
 const express = require("express");
 const route = express.Router();
-const verifyToken = require("../middleware/VerifyToken");
+const jwt = require("jsonwebtoken");
+const JWTSECRET = process.env.JWTSECRET;
+const User = require("../models/User");
 
-route.post("/", verifyToken, async (req, res) => {
-  res.status(200).json({
-    isAuthenticated: req.isAuthenticated,
-    message: "user auth successful",
-  });
+route.post("/", async (req, res) => {
+  const token = req.cookies.token;
+  if (!token) return res.status(400).json({ error: "No token found" });
+
+  const payload = jwt.verify(token, JWTSECRET);
+  const user = await User.findById(payload.id);
+  if (!user) res.status(400).json({ error: "User not verified" });
+  req.isAuthenticated = true;
+  res.json({ id: user._id, username: user.username, isAuthenticated: true });
 });
 
 module.exports = route;

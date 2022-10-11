@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const cookieParser = require("cookie-parser");
 const PORT = process.env.PORT || 6969;
 require("dotenv").config();
 
@@ -9,6 +10,7 @@ app.get("/", (req, res) => {
   res.status(200).json("API working fine");
 });
 
+app.use(cookieParser());
 app.use(express.json());
 app.use("/api", routes);
 
