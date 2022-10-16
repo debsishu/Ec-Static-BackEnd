@@ -10,6 +10,9 @@ const verifyToken = async (req, res, next) => {
   const user = await User.findById(payload.id);
   if (!user) res.status(400).json({ error: "User not verified" });
   // res.json({ id: user._id, username: user.username, isAuthenticated: true });
+  req.body.userID = user._id.toString();
+  req.body.username = user.username;
+  req.body.isAuthenticated = true;
   return next();
 };
 

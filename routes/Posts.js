@@ -1,21 +1,23 @@
 const express = require("express");
 const route = express.Router();
 const Posts = require("../models/Posts");
-
-route.post("/", async (req, res) => {
-  const { username, postContent } = req.body;
-
-  try {
+const verifyToken = require("../middleware/VerifyToken");
+route.post("/", verifyToken, async (req, res) => {
+  const { userID, username, postContent, isAuthenticated, clubID } = req.body;
+  console.log(req.body);
+  if (isAuthenticated) {
     const response = await Posts.create({
+      userID,
       username,
       postContent,
       date: new Date().toLocaleDateString("en-GB"),
+      clubID,
     });
+    res.json({ status: "ok" });
     console.log("Post created successfully : ", response);
-  } catch (error) {
-    res.json(error);
+  } else {
+    res.status(401).json({ status: "unauthorized" });
   }
-  res.json({ status: "ok" });
 });
 
 module.exports = route;
