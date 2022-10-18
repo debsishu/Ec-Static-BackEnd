@@ -21,7 +21,7 @@ route.post("/", async (req, res) => {
       JWTSECRET
     );
     return res
-      .cookie("token", token)
+      .cookie("token", token, { sameSite: "none", secure: true })
       .json({ id: response._id, username: response.username });
   } catch (error) {
     res.json(error);
