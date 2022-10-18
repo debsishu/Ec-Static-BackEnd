@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const cookieParser = require("cookie-parser");
 const PORT = process.env.PORT || 6969;
@@ -10,6 +11,7 @@ app.get("/", (req, res) => {
   res.status(200).json("API working fine");
 });
 
+app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
 app.use("/api", routes);
