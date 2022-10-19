@@ -21,7 +21,11 @@ route.post("/", async (req, res) => {
       JWTSECRET
     );
     return res
-      .cookie("token", token, { sameSite: "none", secure: true })
+      .cookie("token", token, {
+        expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
+        sameSite: "none",
+        secure: true,
+      })
       .json({ id: user._id, username: user.username });
   } else {
     res
