@@ -5,7 +5,7 @@ const JWTSECRET = process.env.JWTSECRET;
 const User = require("../models/User");
 
 route.post("/", async (req, res) => {
-  const token = req.cookies.token;
+  const token = req.body.token;
   if (!token) return res.status(400).json({ error: "No token found" });
 
   const payload = jwt.verify(token, JWTSECRET);

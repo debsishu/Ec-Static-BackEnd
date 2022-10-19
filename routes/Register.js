@@ -21,14 +21,14 @@ route.post("/", async (req, res) => {
       JWTSECRET
     );
     return res
-      .cookie("token", token, {
-        expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
-        sameSite: "none",
-        secure: true,
+      .json({
+        id: response._id,
+        username: response.username,
+        token: token,
       })
-      .json({ id: response._id, username: response.username });
+      .status(201);
   } catch (error) {
-    res.json(error);
+    res.json(error).status(400);
   }
 });
 module.exports = route;

@@ -20,13 +20,7 @@ route.post("/", async (req, res) => {
       { username: user.username, id: user._id },
       JWTSECRET
     );
-    return res
-      .cookie("token", token, {
-        expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
-        sameSite: "none",
-        secure: true,
-      })
-      .json({ id: user._id, username: user.username });
+    return res.json({ id: user._id, username: user.username, token: token });
   } else {
     res
       .sendStatus(401)
