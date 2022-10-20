@@ -20,7 +20,12 @@ route.post("/", async (req, res) => {
       { username: user.username, id: user._id },
       JWTSECRET
     );
-    return res.json({ id: user._id, username: user.username, token: token });
+    return res.json({
+      id: user._id,
+      name: user.name,
+      username: user.username,
+      token: token,
+    });
   } else {
     res
       .sendStatus(401)

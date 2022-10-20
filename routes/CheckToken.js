@@ -12,7 +12,12 @@ route.post("/", async (req, res) => {
   const user = await User.findById(payload.id);
   if (!user) res.status(400).json({ error: "User not verified" });
   req.isAuthenticated = true;
-  res.json({ id: user._id, username: user.username, isAuthenticated: true });
+  res.json({
+    id: user._id,
+    name: user.name,
+    username: user.username,
+    isAuthenticated: true,
+  });
 });
 
 module.exports = route;

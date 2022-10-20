@@ -23,6 +23,7 @@ route.post("/", async (req, res) => {
     return res
       .json({
         id: response._id,
+        name: response.name,
         username: response.username,
         token: token,
       })

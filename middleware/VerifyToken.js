@@ -12,6 +12,7 @@ const verifyToken = async (req, res, next) => {
   // res.json({ id: user._id, username: user.username, isAuthenticated: true });
   req.body.userID = user._id.toString();
   req.body.username = user.username;
+  req.body.name = user.name;
   req.body.isAuthenticated = true;
   return next();
 };
