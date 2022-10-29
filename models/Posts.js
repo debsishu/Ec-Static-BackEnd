@@ -6,6 +6,7 @@ const PostSchema = new mongoose.Schema({
   postContent: { type: String, required: true },
   date: { type: String, required: true },
   clubID: { type: String, required: true },
+  imageURL : {type : String, required : false}
 });
 
 const model = mongoose.model("PostSchema", PostSchema);
