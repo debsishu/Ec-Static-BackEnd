@@ -15,6 +15,8 @@ route.post("/", async (req, res) => {
       email,
       username,
       password,
+      profileImageURL:
+        "https://img.myloview.com/stickers/default-avatar-profile-in-trendy-style-for-social-media-user-icon-400-228654852.jpg",
     });
     const token = jwt.sign(
       { username: response.username, id: response._id },
