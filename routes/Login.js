@@ -10,12 +10,10 @@ route.post("/", async (req, res) => {
 
   const user = await User.findOne({ username }).lean();
   if (!user) {
-    return res
-      .json({
-        status: "invalid-username-or-password",
-        message: "username or password is invalid",
-      })
-      .status(401);
+    res.sendStatus(401).json({
+      status: "invalid-username-or-password",
+      message: "username or password is invalid",
+    });
   }
   if (await bcrypt.compare(password, user.password)) {
     const token = jwt.sign(
