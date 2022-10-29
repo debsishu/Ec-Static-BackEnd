@@ -26,15 +26,14 @@ route.post("/", async (req, res) => {
       id: user._id,
       name: user.name,
       username: user.username,
+      profileImageURL: user.profileImageURL,
       token: token,
     });
   } else {
-    res
-      .sendStatus(401)
-      .json({
-        status: "invalid-username-or-password",
-        message: "username or password is invalid",
-      });
+    res.sendStatus(401).json({
+      status: "invalid-username-or-password",
+      message: "username or password is invalid",
+    });
   }
 });
 

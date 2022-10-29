@@ -27,6 +27,7 @@ route.post("/", async (req, res) => {
         id: response._id,
         name: response.name,
         username: response.username,
+        profileImageURL: response.profileImageURL,
         token: token,
       })
       .status(201);
