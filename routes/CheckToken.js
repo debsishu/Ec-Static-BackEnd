@@ -16,6 +16,7 @@ route.post("/", async (req, res) => {
     id: user._id,
     name: user.name,
     username: user.username,
+    profileImageURL: user.profileImageURL,
     isAuthenticated: true,
   });
 });
