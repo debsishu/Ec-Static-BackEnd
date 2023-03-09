@@ -2,6 +2,7 @@ const express = require("express");
 const route = express.Router();
 const Posts = require("../models/Posts");
 const verifyToken = require("../middleware/VerifyToken");
+
 route.post("/", verifyToken, async (req, res) => {
   const { userID, username, postContent, isAuthenticated, clubID, imageURL } =
     req.body;

@@ -15,6 +15,7 @@ const loginRoute = require("./routes/Login");
 const checkToken = require("./routes/CheckToken");
 const allPosts = require("./routes/AllPosts");
 const Profile = require("./routes/Profile");
+const clubPosts = require()
 
 route.use("/register", registerRoute);
 route.use("/createpost", postsRoute);
