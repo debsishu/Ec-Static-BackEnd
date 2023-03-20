@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 const ClubSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  userCount: { type: Number, require: true },
+  Cname: { type: String, required: true },
+  userCount: { type: Number, required: true },
 });
 
 const model = mongoose.model("ClubSchema", ClubSchema);

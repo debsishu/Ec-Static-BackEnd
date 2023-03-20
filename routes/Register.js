@@ -76,6 +76,7 @@ route.post("/", async (req, res) => {
         message: "Email is already taken",
       });
     } else {
+      let joinedClub = []
       const response = await User.create({
         name,
         email,
@@ -83,6 +84,7 @@ route.post("/", async (req, res) => {
         password,
         profileImageURL:
           "https://img.myloview.com/stickers/default-avatar-profile-in-trendy-style-for-social-media-user-icon-400-228654852.jpg",
+        joinedClub
       });
       const token = jwt.sign(
         { username: response.username, id: response._id },

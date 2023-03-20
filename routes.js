@@ -15,7 +15,9 @@ const loginRoute = require("./routes/Login");
 const checkToken = require("./routes/CheckToken");
 const allPosts = require("./routes/AllPosts");
 const Profile = require("./routes/Profile");
-const clubPosts = require()
+const clubPosts = require("./routes/ClubPosts")
+const createClub = require("./routes/CreateClub")
+const joinClub = require("./routes/JoinClub")
 
 route.use("/register", registerRoute);
 route.use("/createpost", postsRoute);
@@ -23,5 +25,8 @@ route.use("/login", loginRoute);
 route.use("/checktoken", checkToken);
 route.use("/allposts", allPosts);
 route.use("/profile", Profile);
+route.use("/clubposts", clubPosts);
+route.use("/createclub", createClub);
+route.use("/joinclub", joinClub);
 
 module.exports = route;
