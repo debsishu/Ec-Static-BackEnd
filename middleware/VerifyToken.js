@@ -4,7 +4,17 @@ const User = require("../models/User");
 
 const verifyToken = async (req, res, next) => {
   try {
-    const token = req.body.token;
+    let token;
+    if (
+      (req.headers.authorization &&
+        req.headers.authorization.split(" ")[0] === "Token") ||
+      (req.headers.authorization &&
+        req.headers.authorization.split(" ")[0] === "Bearer")
+    ) {
+      token = req.headers.authorization.split(" ")[1];
+    } else {
+      return res.status(400).json({ error: "No token found" });
+    }
     if (!token) return res.status(400).json({ error: "No token found" });
 
     const payload = jwt.verify(token, JWTSECRET);
@@ -18,6 +28,7 @@ const verifyToken = async (req, res, next) => {
     return next();
   } catch (error) {
     console.log(error);
+    res.status(400).json({ error: "User not verified" });
   }
 };
 
