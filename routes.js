@@ -19,6 +19,7 @@ const clubPosts = require("./routes/ClubPosts");
 const createClub = require("./routes/CreateClub");
 const joinClub = require("./routes/JoinClub");
 const clubDetails = require("./routes/ClubDetails");
+const IncreaseLike = require("./routes/IncreaseLike");
 
 route.use("/register", registerRoute);
 route.use("/createpost", postsRoute);
@@ -30,5 +31,6 @@ route.use("/clubposts", clubPosts);
 route.use("/createclub", createClub);
 route.use("/joinclub", joinClub);
 route.use("/clubdetails", clubDetails);
+route.use("/increaselike", IncreaseLike);
 
 module.exports = route;

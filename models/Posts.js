@@ -7,7 +7,7 @@ const PostSchema = new mongoose.Schema({
   postContent: { type: String, required: true },
   date: { type: String, required: true },
   clubID: { type: String, required: true },
-  likeCount: { type: Number, required: true },
+  likeCount: [{ type: String }],
   imageURL: { type: String, required: false },
 });
 
