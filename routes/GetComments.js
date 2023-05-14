@@ -14,6 +14,7 @@ route.get("/", verifyToken, async (req, res) => {
     }
   } catch (err) {
     console.log(err);
+    res.status(404).json({ message: "no-comments-found" });
   }
 });
 

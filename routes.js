@@ -25,6 +25,7 @@ const SearchPost = require("./routes/SearchPost");
 const FindPost = require("./routes/FindPost");
 const Comments = require("./routes/GetComments");
 const AddComments = require("./routes/AddComment");
+const UpdateProfile = require("./routes/UpdateProfile");
 
 //Using the imported routes
 route.use("/register", registerRoute);
@@ -42,5 +43,5 @@ route.use("/searchpost", SearchPost);
 route.use("/findpost", FindPost);
 route.use("/getcomments", Comments);
 route.use("/addcomment", AddComments);
-
+route.use("/updateprofile", UpdateProfile);
 module.exports = route;
