@@ -4,7 +4,7 @@ const Posts = require("../models/Posts");
 const verifyToken = require("../middleware/VerifyToken");
 const ObjectId = require("mongodb").ObjectId;
 
-route.get("/", verifyToken, async (req, res) => {
+route.post("/", verifyToken, async (req, res) => {
   try {
     const { postID } = req.body;
     var objectId = new ObjectId(postID);
@@ -14,7 +14,6 @@ route.get("/", verifyToken, async (req, res) => {
     } else {
       res.status(404).json({ message: "post-not-found" });
     }
-    console.log(fetchedPost);
   } catch (err) {
     res.status(404).json({"message" : "no-post-found" });
     console.log(err);

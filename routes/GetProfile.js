@@ -3,7 +3,7 @@ const route = express.Router();
 const verifyToken = require("../middleware/VerifyToken");
 const User = require("../models/User");
 
-route.get("/", verifyToken, async (req, res) => {
+route.post("/", verifyToken, async (req, res) => {
   const { userinfo } = req.body;
   try {
     const result = await User.findOne({ username: userinfo });

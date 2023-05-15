@@ -3,7 +3,7 @@ const route = express.Router();
 const Comments = require("../models/Comments");
 const verifyToken = require("../middleware/VerifyToken");
 
-route.get("/", verifyToken, async (req, res) => {
+route.post("/", verifyToken, async (req, res) => {
   try {
     const { postID } = req.body;
     const fetchedComments = await Comments.find({ postID : postID });
